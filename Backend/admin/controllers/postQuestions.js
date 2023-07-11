@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const testSchema = require("../schema/testSchema");
 const postQuestions = async (req, res) => {
   let {
+    subject,
     course,
     question,
     options,
@@ -39,6 +40,7 @@ const postQuestions = async (req, res) => {
             negativeMarking: negative,
             partialMarks: partial,
             isMultipleChoice,
+            subject,
           },
         },
       }
@@ -54,6 +56,7 @@ const postQuestions = async (req, res) => {
             integerAns,
             solnImg,
             solnVid,
+            subject,
             maximumMarks: maxMarks,
             negativeMarking: negative,
             partialMarks: partial,

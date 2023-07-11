@@ -12,6 +12,7 @@ const freeRoutes = [
 ];
 const requireAuth = (req, res, next) => {
   console.log("heman");
+
   // console.log(req.url);
   if (freeRoutes.includes(req.url)) {
     console.log("hello I am himanshu");
