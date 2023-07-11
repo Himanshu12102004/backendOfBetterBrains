@@ -50,15 +50,19 @@ app.post("/data", async (req, res) => {
   }
 });
 app.get("/", (req, res) => {
-  res.json({
-    welcome: "Welcome to home",
-    success: true,
-    user: {
-      name: req.user.crediantials.name,
-      boughtCourses: req.user.crediantials.boughtCourses,
-      testLive: req.user.crediantials.testLive,
-    },
-  });
+  if (!req.user)
+    res.json({
+      welcome: "Welcome to home",
+      success: true,
+      user: {
+        name: req.user.crediantials.name,
+        boughtCourses: req.user.crediantials.boughtCourses,
+        testLive: req.user.crediantials.testLive,
+      },
+    });
+  else {
+    res.json({ success: false });
+  }
 });
 // app.get("/test", (req, res) => {
 //   console.log(req.query);
