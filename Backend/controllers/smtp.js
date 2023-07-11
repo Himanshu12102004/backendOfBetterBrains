@@ -40,7 +40,7 @@ async function sendMail(user_id, email) {
       text: `Your otp for Better Brains signUp authentication is ${otp}`,
       html: `<h1>Your otp for Better Brains signUp authentication is${otp}</h1>`,
     };
-
+    console.log("better brainsggigygigygyg");
     const result = await transport.sendMail(mailOptions);
     return result;
   } catch (error) {
