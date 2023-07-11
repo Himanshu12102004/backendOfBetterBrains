@@ -49,21 +49,6 @@ app.post("/data", async (req, res) => {
     res.json({ success: false });
   }
 });
-app.get("/", (req, res) => {
-  if (!req.user)
-    res.json({
-      welcome: "Welcome to home",
-      success: true,
-      user: {
-        name: req.user.name,
-        boughtCourses: req.use.boughtCourses,
-        testLive: req.user.testLive,
-      },
-    });
-  else {
-    res.json({ success: false });
-  }
-});
 // app.get("/test", (req, res) => {
 //   console.log(req.query);
 // });
