@@ -55,9 +55,9 @@ app.get("/", (req, res) => {
       welcome: "Welcome to home",
       success: true,
       user: {
-        name: req.user.crediantials.name,
-        boughtCourses: req.user.crediantials.boughtCourses,
-        testLive: req.user.crediantials.testLive,
+        name: req.user.name,
+        boughtCourses: req.use.boughtCourses,
+        testLive: req.user.testLive,
       },
     });
   else {
