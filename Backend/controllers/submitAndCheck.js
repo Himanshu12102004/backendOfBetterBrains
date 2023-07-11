@@ -41,6 +41,15 @@ const submitAndCheck = async (req, res) => {
       timeTaken: "",
     };
     if (answers[questionNo][0] === "") {
+      if (subject === "physics") {
+        physics.unattemptedQuestions += 1;
+      }
+      if (subject === "chemistry") {
+        chemistry.unattemptedQuestions += 1;
+      }
+      if (subject === "maths") {
+        maths.unattemptedQuestions += 1;
+      }
       testResult.push(resultOfTheQuestion);
       questionNo++;
       return;
