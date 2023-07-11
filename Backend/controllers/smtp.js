@@ -34,11 +34,11 @@ async function sendMail(user_id, email) {
     const otp = generateOtp();
     saveOtp(otp, email);
     const mailOptions = {
-      from: "HIMANSHU Gupta <himanshu12102004@gmail.com>",
+      from: "BetterBrains <betterbrains30@gmail.com>",
       to: email,
-      subject: "hello from himanshu",
-      text: `enter the otp ${otp}`,
-      html: `<h1>enter the otp ${otp}</h1>`,
+      subject: "OTP for brtter brains sign up",
+      text: `Your otp for Better Brains signUp authentication is ${otp}`,
+      html: `<h1>Your otp for Better Brains signUp authentication is${otp}</h1>`,
     };
 
     const result = await transport.sendMail(mailOptions);
