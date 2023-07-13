@@ -5,6 +5,10 @@ require("dotenv").config();
 console.log(process.env.PORT);
 const router = require("./Routes/routes");
 const cookieParser = require("cookie-parser");
+const cookie_session = require("cookie-session");
+require("./config/passportConfig");
+const passport = require("passport");
+
 // const hasCourses = require("./AuthMiddlewares/authMiddleware");
 const cors = require("cors");
 const requireAuth = require("./AuthMiddlewares/authMiddleware");
@@ -25,9 +29,19 @@ mongo();
 
 const app = express();
 app.use(cors());
+app.set("view engine", "ejs");
 app.use(express.json());
+app.use(
+  cookie_session({ maxAge: 24 * 60 * 60 * 1000, keys: ["duhudhuhuvdsgr"] })
+);
+
+app.use(passport.initialize());
+
+app.use(passport.session());
 app.use(cookieParser());
 app.use(router.adminRouter);
+app.use("/auth", router.googleRouter);
+
 app.use(requireAuth);
 app.listen(process.env.PORT || 5000, () => {
   console.log("server");

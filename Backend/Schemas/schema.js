@@ -33,6 +33,7 @@ const schema = new mongoose.Schema({
     // length: [, "enter a valid phone no."],
     validate: [phoneValidator, "enter valid phone no."],
   },
+  googleID: { type: String, default: "" },
   password: {
     type: String,
     minlength: [6, "minlength of password must be 6"],
