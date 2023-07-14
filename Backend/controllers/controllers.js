@@ -1,5 +1,4 @@
 const temporaryModel = require("../Schemas/temporaryUsers");
-const jwt = require("jsonwebtoken");
 const model = require("../Schemas/schema");
 const smtp = require("./smtp");
 
@@ -52,7 +51,14 @@ module.exports.signUpBeforeAuthentication = async (req, res) => {
       createdAt: new Date(),
     });
 
-    smtp(user._id, email)
+    smtp(
+      newDoc._id,
+      newDoc.email,
+      "Your otp for Sign Up to better Brains is ",
+      "OTP for better brains signup",
+      1,
+      temporaryModel
+    )
       .then((result) => {
         console.log(result);
       })
@@ -60,13 +66,6 @@ module.exports.signUpBeforeAuthentication = async (req, res) => {
         console.log(e);
       });
     const userForOtp = { email, password, phone, name };
-    const jwt = require("jsonwebtoken");
-    const maxAge = 3 * 24 * 60 * 60;
-    module.exports.createToken = (id) => {
-      return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: maxAge,
-      });
-    };
 
     const otpJwt = () => {
       return jwt.sign({ id: user._id }, process.env.EMAIL_VERIFICATION_SECRET, {

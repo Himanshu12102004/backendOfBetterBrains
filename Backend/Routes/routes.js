@@ -8,7 +8,7 @@ const authorizationRouter = express.Router();
 const resendOtpRouter = express.Router();
 const getScheduleRouter = express.Router();
 const getResultRouter = express.Router();
-
+const changePasswordRouter = express.Router();
 const authorizeUser = require("../controllers/authorization");
 const getQuestionPaper = require("../controllers/getQuestionPaper");
 const postSchedule = require("../controllers/postSchedule");
@@ -17,6 +17,9 @@ const resendOtp = require("../controllers/resendOtp");
 const getSchedule = require("../controllers/getSchedule");
 const getResult = require("../controllers/submitAndCheck");
 const postQuestions = require("../admin/controllers/postQuestions");
+const changePasswordOtp = require("../controllers/changePasswordOtp");
+const passwordResetOtpCheck = require("../controllers/otpPasswordResetCheck");
+const setNewPassword = require("../controllers/setNewPassword");
 const generateToken = require("../controllers/jwtCreation");
 // LOGIN AND SIGNUP WITH GOOGLE ROUTER
 const googleRouter = require("express").Router();
@@ -59,6 +62,11 @@ resendOtpRouter.route("/resendOtp").get(resendOtp);
 getScheduleRouter.route("/schedule").get(getSchedule);
 getResultRouter.route("/result").post(getResult);
 adminRouter.route("/data").post(postQuestions);
+changePasswordRouter.route("/changePasswordOtp").post(changePasswordOtp);
+changePasswordRouter
+  .route("/changePasswordOtpCheck")
+  .post(passwordResetOtpCheck);
+changePasswordRouter.route("/newPassword").post(setNewPassword);
 module.exports = {
   logSignRouter,
   getTestsRouter,
@@ -69,4 +77,5 @@ module.exports = {
   getScheduleRouter,
   getResultRouter,
   googleRouter,
+  changePasswordRouter,
 };

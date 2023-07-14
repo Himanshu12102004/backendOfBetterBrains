@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const userSchema = require("../Schemas/schema");
 const temporaryModel = require("../Schemas/temporaryUsers");
+const changePassword = require("../Schemas/changePassword");
 const freeRoutes = [
   "/signup",
   "/login",
@@ -8,6 +9,9 @@ const freeRoutes = [
   "/otp",
   "/authorizeUser",
   "/resendOtp",
+  "/changePasswordOtp",
+  "/changePasswordOtpCheck",
+  "/newPassword",
   // "/hello",
 ];
 const requireAuth = (req, res, next) => {

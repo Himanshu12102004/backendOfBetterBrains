@@ -3,7 +3,7 @@ const { google } = require("googleapis");
 const { generateOtp, saveOtp } = require("../helpers/generateAndSaveOTP");
 const jwt = require("jsonwebtoken");
 
-async function sendMail(user_id, email) {
+async function sendMail(user_id, email, body, subject, isOtp, model) {
   const credentials = {
     CLIENT_ID: process.env.CLIENT_ID,
     CLIENT_SECRET: process.env.CLIENT_SECRET,
@@ -31,14 +31,17 @@ async function sendMail(user_id, email) {
         accessToken: accessToken,
       },
     });
-    const otp = generateOtp();
-    saveOtp(otp, email);
+    if (isOtp == 1) {
+      const otp = generateOtp();
+      saveOtp(otp, email, model);
+      body = subject + otp;
+    }
     const mailOptions = {
       from: "BetterBrains <betterbrains30@gmail.com>",
       to: email,
-      subject: "OTP for brtter brains sign up",
-      text: `Your otp for Better Brains signUp authentication is ${otp}`,
-      html: `<h1>Your otp for Better Brains signUp authentication is${otp}</h1>`,
+      subject: subject,
+      text: body,
+      html: `<h1>${body}</h1>`,
     };
     console.log("better brainsggigygigygyg");
     const result = await transport.sendMail(mailOptions);

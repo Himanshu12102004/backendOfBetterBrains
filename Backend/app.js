@@ -54,6 +54,7 @@ app.use(router.authorizationRouter);
 app.use(router.resendOtpRouter);
 app.use(router.getScheduleRouter);
 app.use(router.getResultRouter);
+app.use(router.changePasswordRouter);
 app.post("/data", async (req, res) => {
   const { question, answer, options } = req.body;
   const a = await TestSchema.create({ question, answer, options });

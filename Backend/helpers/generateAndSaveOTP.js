@@ -9,18 +9,16 @@ function generateOtp() {
 }
 const otpGenerator = require("otp-generator");
 
-const saveOtp = async (otp, email) => {
+const saveOtp = async (otp, email, model) => {
   const salt = await bcrypt.genSalt();
   otp = "" + otp;
-
+  console.log(model, email);
   try {
     console.log(email);
-    const user = await temporaryModel.findOne({ email });
+    const user = await model.findOne({ email });
     otp = await bcrypt.hash(otp, salt);
-    console.log(user);
-    console.log(
-      await temporaryModel.updateOne({ email: email }, { $set: { otp } })
-    );
+    // console.log(user);
+    console.log(await model.updateOne({ email: email }, { $set: { otp } }));
   } catch (err) {
     console.log(err);
   }

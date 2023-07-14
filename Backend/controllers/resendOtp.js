@@ -33,7 +33,14 @@ const resendOtp = (req, res, next) => {
               createdAt: new Date(),
               _id: user._id,
             });
-            smtp(newDoc._id, newDoc.email)
+            smtp(
+              newDoc._id,
+              newDoc.email,
+              "Your otp for Sign Up to better Brains is ",
+              "OTP for better brains signup",
+              1,
+              temporaryModel
+            )
               .then((result) => {
                 console.log(result);
               })

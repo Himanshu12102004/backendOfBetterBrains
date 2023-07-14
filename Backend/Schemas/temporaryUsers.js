@@ -25,6 +25,7 @@ const schema = new mongoose.Schema({
     type: String,
     validate: [isEmail, "enter valid email"],
     required: [true, "email is required"],
+    unique: true,
   },
   phone: {
     type: Number,
