@@ -37,11 +37,8 @@ passport.use(
             phone: "1000000000",
             password: "!!!!!!",
           });
-        } else if (previousUser) {
-          return done(null, false, {
-            message: "User already exists. Cannot log in with Google.",
-          });
         }
+
         console.log(user);
         const token = generateToken.createToken(user._id);
 

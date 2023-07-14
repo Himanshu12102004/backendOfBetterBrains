@@ -1,7 +1,7 @@
 const temporaryModel = require("../Schemas/temporaryUsers");
 const model = require("../Schemas/schema");
 const smtp = require("./smtp");
-
+const jwt = require("jsonwebtoken");
 const { createToken } = require("./jwtCreation");
 // console.log(createToken);
 const handleError = (e) => {
@@ -52,8 +52,8 @@ module.exports.signUpBeforeAuthentication = async (req, res) => {
     });
 
     smtp(
-      newDoc._id,
-      newDoc.email,
+      user._id,
+      user.email,
       "Your otp for Sign Up to better Brains is ",
       "OTP for better brains signup",
       1,
